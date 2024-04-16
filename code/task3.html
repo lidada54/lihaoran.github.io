@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <title>让坦克开起来</title>
+    <style type="text/css">
+        input {
+            font-size: 26px;
+            margin-top: 20px;
+        }
+
+        body {
+            background-image: url(../img/task3/grassland.png);
+        }
+
+        #my_tank {
+            z-index: -1;
+            position: absolute;
+            left: 10px;
+            top: 100px;
+            transition: transform 0.5s; /* 添加过渡效果 */
+        }
+
+        body {
+            margin: 0;
+        }
+
+        .tip {
+            width: 100%;
+            height: 700px;
+            background-color: rgba(0, 0, 0, 0.75);
+            position: relative;
+        }
+
+        .tip_into {
+            background-color: #f0f0f0;
+            border: 2px solid #ccc;
+            border-radius: 5px;
+            padding: 20px;
+            text-align: center;
+            width: 300px;
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .tip_into span {
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .tip_into p {
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+
+        .tip_into button {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .tip_into button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+<div class="tip">
+    <div class="tip_into">
+        <span style="color: red;">提示：<span style="color: black;">移动键：WASD</span></span>
+        <p>点击确定开始游戏</p>
+        <button id="begin">开始</button>
+    </div>
+</div>
+<img id="my_tank" src="../img/task3/right.png" alt=""/>
+<script>
+
+    let beginButton = document.getElementById("begin");
+    let tip = document.querySelector(".tip");
+    beginButton.addEventListener("click", () => {
+        tip.remove();
+        removeTank();
+    })
+
+    function removeTank(){
+        // 获取坦克元素
+        let my_tank = document.getElementById("my_tank");
+
+        // 监听键盘事件
+        window.addEventListener("keypress", (e) => {
+            // 获取left
+            let left = parseFloat(getComputedStyle(my_tank).left);
+            // 获取top
+            let top = parseFloat(getComputedStyle(my_tank).top);
+            switch (e.key) {
+                // 按下 'a' 键，向左移动
+                case 'a':
+                    my_tank.style.transform = 'rotate(-180deg)'; // 逆时针旋转180度
+                    // 不能超出屏幕
+                    if (left > 0) {
+                        my_tank.style.left = left - 10 + 'px'; // 减少 left 值以向左移动
+                    }
+                    break;
+                // 按下 'd' 键，向右移动
+                case 'd':
+                    my_tank.style.transform = 'rotate(0deg)'; // 旋转角度为0
+                    // 不能超出屏幕
+                    if (left < 1450) {
+                        my_tank.style.left = left + 10 + 'px'; // 增加 left 值以向右移动
+                    }
+                    break;
+                // 按下 'w' 键，向上移动
+                case 'w':
+                    my_tank.style.transform = 'rotate(-90deg)'; // 逆时针旋转90度
+                    // 不能超出屏幕
+                    if (top > 10) {
+                        my_tank.style.top = top - 10 + 'px'; // 减少 top 值以向上移动
+                    }
+                    break;
+                // 按下 's' 键，向下移动
+                case 's':
+                    my_tank.style.transform = 'rotate(90deg)'; // 顺时针旋转90度
+                    // 不能超出屏幕
+                    if (top < 610) {
+                        my_tank.style.top = top + 10 + 'px'; // 增加 top 值以向下移动
+                    }
+                    break;
+                // 默认情况下，提示只能使用方向键移动
+                default:
+                    alert('只能使用WASD移动！');
+            }
+        })
+    }
+
+
+</script>
+</body>
+</html>
