@@ -50,59 +50,7 @@ body{
     transition: 0.5s;
     background: #18a058;
 }
-.nav{
-    padding: 0 40px 0 40px;
-    display: flex;
-    height: 44px;
-    background: #4c4c4c;
-    justify-content: space-between;
-}
-.home{
-    display: flex;
-}
-.home > img{
-    margin-top: 6px;
-    height: 30px;
-}
-.home > p {
-    margin-left: 5px;
-    line-height: 6px;
-}
-.home :hover{
-    text-decoration: underline;
-}
-.nav_left{
-    line-height: 30px;
-    font-size: 20px;
-    font-weight: 600;
-}
-.nav_left a {
-    text-align: center;
-    text-decoration: none;
-    color: aliceblue;
-}
-.nav_right{
-    color: white;
-    display: flex;
-}
-.nav_right > .p1{
-    text-align: center;
-    line-height: 0;
-    font-size: 25px;
-}
-.nav_right > .p2{
-    text-align: center;
-    line-height: 20px;
-}
-.nav_right > img{
-    margin-left: 20px;
-    border-radius: 10px;
-    height: 44px;
-}
-.nav_right > p{
-    font-weight: 600;
-    color: #dcdbdb;
-}
+
 .second_nav{
     display: flex;
     height: 60px;
