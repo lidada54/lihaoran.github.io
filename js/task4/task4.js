@@ -28,11 +28,6 @@ function changeBottomADStyle() {
     // 设置距离左边距离为：（页面宽度 - 自身宽度）
     bottomRightAd.style.left = (screenWidth - clientWidth - getScrollbarWidth()) + 'px';
 
-    // setInterval(()=>{
-    //     // 设置距离顶部距离为：（页面高度 - 自身高度）
-    //     // 最终距离 (screenHeight - bottomRightAdHeight) + 'px';
-    //     bottomRightAd.style.top = bottomRightAd.style.top - 10;
-    // },500)
     let intervalId = setInterval(() => {
         // 获取当前距离顶部的位置（字符串类型）
         let currentTop = bottomRightAd.style.top;

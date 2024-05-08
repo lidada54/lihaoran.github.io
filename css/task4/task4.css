@@ -1,3 +1,4 @@
+/*主题样式*/
 .main_box {
     width: 800px;
     background-color: #f0f0f0;
@@ -50,6 +51,7 @@ body {
 .top_ad_1 img, .top_ad_2 img{
     max-width: 100px;
 }
+/*关闭按钮*/
 .close1, .close2 ,.close3{
     font-size: 10px;
     background: #e3e3e3;
@@ -59,7 +61,7 @@ body {
     position: absolute;
     top: 0;
 }
-
+/*右侧对联*/
 .top_ad_2 {
     left: 0;
 }
