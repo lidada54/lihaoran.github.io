@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>jquery插件使用</title>
+    <!-- Link Swiper's CSS -->
+    <link rel="stylesheet" href="../css/task7/animate.min.css">
+    <link rel="stylesheet" href="../css/task7/swiper.min.css">
+    <!-- Demo styles -->
+    <style>
+        body {
+            font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+            font-size: 14px;
+            color: #000;
+            margin: 0;
+            padding: 0;
+            background-color: #262626;
+        }
+
+        .swiper-container {
+            width: 100%;
+            position: absolute;
+            top: 50%;
+            margin-top: -335px;
+        }
+
+        .swiper-slide {
+            background-position: center;
+            background-size: cover;
+            width: 450px;
+            height: 670px;
+            border-radius: 10px;
+        }
+
+        .bg .bgImg {
+            position: fixed;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            top: 0;
+            height: 100%;
+        }
+
+        .shadow {
+            position: absolute;
+            width: 100%;
+            background: rgba(0, 0, 0, 0.4);
+            height: 100%;
+            text-align: center;
+            line-height: 670px;
+            color: #ffffff;
+            font-size: 30px;
+            display: none;
+            border-radius: 10px;
+        }
+    </style>
+    <script src="../js/jquery-3.7.1.min.js"></script>
+    <!-- Swiper JS -->
+    <script src="../js/task7/swiper.min.js"></script>
+</head>
+<body>
+<!-- Swiper -->
+<div class="bg">
+    <div class="swiper-container animated rotateInDownLeft">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide" style="background-image:url(../img/task7/1.png)">
+                <div class="shadow"><span class="animated zoomIn" style="display:block;">乐器</span></div>
+            </div>
+            <div class="swiper-slide" style="background-image:url(../img/task7/2.png)">
+                <div class="shadow"><span class="animated zoomIn" style="display:block;">弦鸣乐器</span></div>
+            </div>
+            <div class="swiper-slide" style="background-image:url(../img/task7/3.png)">
+                <div class="shadow"><span class="animated zoomIn" style="display:block;">气鸣乐器 </span></div>
+            </div>
+            <div class="swiper-slide" style="background-image:url(../img/task7/4.png)">
+                <div class="shadow"><span class="animated zoomIn" style="display:block;">膜鸣乐器</span></div>
+            </div>
+            <div class="swiper-slide" style="background-image:url(../img/task7/5.png)">
+                <div class="shadow"><span class="animated zoomIn" style="display:block;">工艺美术</span></div>
+            </div>
+            <div class="swiper-slide" style="background-image:url(../img/task7/6.png)">
+                <div class="shadow"><span class="animated zoomIn" style="display:block;">民间美术</span></div>
+            </div>
+            <div class="swiper-slide" style="background-image:url(../img/task7/7.png)">
+                <div class="shadow"><span class="animated zoomIn" style="display:block;">绘画</span></div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    // 219970513 李浩然
+    let swiper = new Swiper('.swiper-container', {
+        effect: 'coverflow',
+        grabCursor: true,
+        centeredSlides: true,
+        slidesPerView: 'auto',
+        loop: true,
+        coverflowEffect: {
+            rotate: 50,
+            stretch: 0,
+            depth: 100,
+            modifier: 1,
+            slideShadows: true,
+        },
+
+    });
+    $(".swiper-slide").mouseenter(function () {
+        $(this).find(".shadow").fadeIn()
+    }).mouseleave(function () {
+        $(this).find(".shadow").fadeOut()
+    })
+</script>
+</body>
+</html>
