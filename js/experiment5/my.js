@@ -1,4 +1,5 @@
 $(() => {
+    // 219970513 李浩然
     // 定义表单字段的验证规则
     const fields = [
         {
@@ -37,16 +38,25 @@ $(() => {
     const validateField = ({id, errorId, message, regex}) => {
         const $input = $(`#${id}`); // 获取输入字段的jQuery对象
         const $error = $(`#${errorId}`); // 获取错误消息显示元素的jQuery对象
-        if (!regex.test($input.val())) { // 使用正则表达式验证输入值
-            $error.text(message); // 验证失败，显示错误消息
-            // 并给对应的加上样式 class="ax-check-error"
-            $input.addClass("ax-check-error")
-            return false;
+        // 先验证非空
+        if ($input.val() !== '' && $input.val() !== null) {
+            // 再验证正则
+            if (!regex.test($input.val())) { // 使用正则表达式验证输入值
+                $error.text(message); // 验证失败，显示错误消息
+                $input.removeClass("ax-check-primary")
+                $input.addClass("ax-check-error") // 失败样式
+                return false;
+            } else {
+                $error.text(''); // 验证成功，清空错误消息
+                $input.removeClass("ax-check-error")
+                $input.addClass("ax-check-primary") // 成功样式
+                return true;
+            }
         } else {
-            $error.text(''); // 验证成功，清空错误消息
-            // class="ax-check-primary"
-            $input.addClass("ax-check-primary")
-            return true;
+            $error.text('请填写内容');
+            $input.removeClass("ax-check-primary")
+            $input.addClass("ax-check-error") // 失败样式
+            return false;
         }
     };
 
@@ -72,9 +82,8 @@ $(() => {
     $('#password, #re_password').on('blur', validatePasswordMatch); // 当密码或重复密码失去焦点时进行匹配验证
 
     // 阻止表单的默认提交行为
-    $('#myForm').on('submit', (event) => {
-        event.preventDefault();
-    });
+    $('#myForm').on('submit', (e) =>
+        e.preventDefault());
 
     // 使用id=submit的button触发表单提交
     $('#submit').on('click', () => {
@@ -97,6 +106,10 @@ $(() => {
             isValid = false;
         }
 
+        // if(!validateReUsername()){
+        //     isValid = false;
+        // }
+
         if (isValid) {
             console.log(JSON.stringify(user)); // 打印user对象的信息
             alert("注册成功!")
@@ -110,5 +123,30 @@ $(() => {
         }
 
     });
+
+
+    // // 用户名重复校验
+    // const validateReUsername = async () => {
+    //     const username = $('#username').val();
+    //     const username_tip = $('#username_tip').val();
+    //     const {data} = await axios({
+    //         method: 'get',
+    //         url: 'http://localhost:8080/user',
+    //         params: {username}
+    //     });
+    //     if (data.data > 0) {
+    //         // 错误提示
+    //         username_tip.text('用户名重名')
+    //         username.addClass("ax-check-error") // 失败样式
+    //         return false;
+    //     } else {
+    //         username_tip.text('')
+    //         username.addClass("ax-check-primary") // 成功样式
+    //         return true;
+    //     }
+    //
+    // }
+    //
+    // $('#username').on('blur', validateReUsername);
 
 });
